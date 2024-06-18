@@ -1,12 +1,11 @@
 import React from "react";
+import TopBar from "./components/top-bar";
 
 function App() {
   return (
-    <div className="font-urbanist font-normal">
-      <header>
-        <h1 className="font-bold">Driving school</h1>
-      </header>
-    </div>
+    <>
+      <TopBar />
+    </>
   );
 }
 
