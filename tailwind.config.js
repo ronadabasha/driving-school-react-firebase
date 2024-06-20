@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         "ds-black": "#111117",
         "ds-red": "#EC2526",
+        "ds-grey": "#6D7076",
       },
       fontFamily: {
         urbanist: ["Urbanist", "sans-serif"],

@@ -1,0 +1,6 @@
+export const HOME = '/'
+export const ABOUT = '/about'
+export const COURSES = '/courses'
+export const TESTS = '/tests'
+export const LATEST_NEWS = '/latest-news'
+export const CONTACT = '/contact'
