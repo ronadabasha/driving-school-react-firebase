@@ -10,7 +10,7 @@ type Props = {
 
 function MainLayout({ children }: Props) {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-ds-grey-light">
       <TopBar />
       <NavbarDesktop />
       <NavbarMobile />

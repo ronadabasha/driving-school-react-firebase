@@ -1,0 +1,18 @@
+
+import { query, collection, getDocs, where } from 'firebase/firestore';
+import { db } from '../config/firebaseConfig';
+import { Question } from '../models/question';
+
+async function getQuestions(questionIds: Array<number>, callback: ([{id, description, answer}]: Question[]) => void) {
+    const q = query(collection(db, "questions"), where('id', 'in', questionIds));
+    const querySnapshot = await getDocs(q);
+    const questions = querySnapshot.docs.map((question) => ({
+        id: question.data().id,
+        description: question.data().description,
+        answer: question.data().answer
+    }));
+    console.log("questions", questions)
+    callback(questions);
+}
+
+export { getQuestions }

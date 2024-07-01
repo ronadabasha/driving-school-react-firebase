@@ -7,6 +7,7 @@ module.exports = {
         "ds-black": "#111117",
         "ds-red": "#EC2526",
         "ds-grey": "#6D7076",
+        "ds-grey-light": "#F5F5F5",
       },
       fontFamily: {
         urbanist: ["Urbanist", "sans-serif"],
