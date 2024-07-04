@@ -1,5 +1,5 @@
 import React from "react";
-import { useTests } from "../hooks/useTests";
+import { useTests } from "../hooks/use-tests";
 import { Link, useParams } from "react-router-dom";
 import { QUESTIONS } from "../routes";
 

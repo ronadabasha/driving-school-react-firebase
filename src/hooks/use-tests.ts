@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTests } from "../services/tests";
-import { Test } from "../models/test";
+import { Test } from "../models";
 
 function useTests(categoryId: number) {
     const [tests, setTests] = useState<Test[]>();

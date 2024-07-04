@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Question } from "../models/question";
+import { Question } from "../models";
 import { getQuestions } from "../services/questions";
 import { getTestById } from "../services/tests";
 
@@ -9,7 +9,6 @@ function useQuestions(testId: number) {
     useEffect(() => {
         (async () => {
             const test = await getTestById(testId)
-            console.log("test0000", test)
             if(test?.questions){
                 getQuestions(test?.questions, setQuestions)
                 const unsubscribe = getQuestions(test?.questions, setQuestions);
