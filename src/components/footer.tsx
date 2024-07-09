@@ -4,8 +4,8 @@ import { Facebook, Instagram, Location, Email, Clock } from "./icons";
 
 function Footer() {
   return (
-    <div className=" bg-ds-black px-20 absolute w-full bottom-0">
-      <div className="flex flex-col lg:flex-row justify-between items-center py-[50px] border-b border-[#c9cbd159]">
+    <div className="flex bg-ds-black px-5 xl:px-20 w-full">
+      <div className="flex w-full flex-col lg:flex-row justify-between items-center py-[50px] border-b border-[#c9cbd159]">
         <div className="flex items-center">
           <Logo customStyle="h-[50px] w-auto ml-5" />
           <Link
@@ -15,8 +15,8 @@ function Footer() {
             Driving School Name{" "}
           </Link>
         </div>
-        <div className="flex justify-between text-white">
-          <p className="flex mx-10">
+        <div className="flex flex-col my-5 lg:my-0 lg:flex-row justify-center items-center lg:justify-between text-white">
+          <p className="flex md:mx-5 xl:mx-10">
             <span className="inline-block pt-1 mr-3">
               <Clock />
             </span>{" "}
@@ -25,7 +25,7 @@ function Footer() {
           <a
             target="_blank"
             href="http://maps.apple.com/maps?q=41.326861076222436, 19.822800721202288"
-            className="flex mr-10 hover:underline"
+            className="flex md:mr-5 xl:mr-10 hover:underline"
             rel="noreferrer"
           >
             <span className="inline-block pt-[3px] mr-3">
@@ -35,7 +35,7 @@ function Footer() {
           </a>
           <a
             href="mailto:test@company.com"
-            className="flex hover:underline mr-10"
+            className="flex hover:underline md:mr-5 xl:mr-10"
           >
             <span className="inline-block pt-[2px] mr-3">
               <Email />

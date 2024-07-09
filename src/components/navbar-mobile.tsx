@@ -2,6 +2,14 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, SyntheticEvent, useState } from "react";
 import { Menu, Cross, Phone, Email, Location } from "./icons";
 import { Link } from "react-router-dom";
+import {
+  ABOUT,
+  COMMON_QUESTIONS,
+  CONTACT,
+  COURSES,
+  HOME,
+  TESTS_CATEGORIES,
+} from "../routes";
 
 const NavbarMobile = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -57,37 +65,37 @@ const NavbarMobile = () => {
                 <div className="flex flex-col items-start text-white">
                   <Link
                     className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to="/"
+                    to={HOME}
                   >
                     Home
                   </Link>
                   <Link
                     className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to="#"
+                    to={ABOUT}
                   >
                     About
                   </Link>
                   <Link
                     className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to="#"
+                    to={COURSES}
                   >
                     Courses
                   </Link>
                   <Link
                     className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to="#"
+                    to={TESTS_CATEGORIES}
                   >
                     Tests
                   </Link>
                   <Link
                     className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to="#"
+                    to={COMMON_QUESTIONS}
                   >
-                    Latest News
+                    Common Questions
                   </Link>
                   <Link
                     className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to="/"
+                    to={CONTACT}
                   >
                     Contact
                   </Link>

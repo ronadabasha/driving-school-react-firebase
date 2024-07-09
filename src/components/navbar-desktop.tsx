@@ -2,6 +2,14 @@ import React from "react";
 import { Phone } from "./icons";
 import Logo from "./logo";
 import { Link } from "react-router-dom";
+import {
+  ABOUT,
+  COMMON_QUESTIONS,
+  CONTACT,
+  COURSES,
+  HOME,
+  TESTS_CATEGORIES,
+} from "../routes";
 
 function NavbarDesktop() {
   return (
@@ -14,22 +22,22 @@ function NavbarDesktop() {
         <nav className="bg-white pl-[40px] xl:pl-0 ml-0 xl:ml-[80px] 2xl:ml-[73px] py-[30px]">
           <ul className="text-base font-bold mt-[10px] text-ds-grey">
             <li className="inline-block mx-1 xl:mr-3">
-              <Link to="/">Home</Link>
+              <Link to={HOME}>Home</Link>
             </li>
             <li className="inline-block mx-1 xl:mx-3">
-              <Link to="/about">About</Link>
+              <Link to={ABOUT}>About</Link>
             </li>
             <li className="inline-block mx-1 xl:mx-3">
-              <Link to="/courses">Courses</Link>
+              <Link to={COURSES}>Courses</Link>
             </li>
             <li className="inline-block mx-1 xl:mx-3">
-              <Link to="/tests">Tests</Link>
+              <Link to={TESTS_CATEGORIES}>Tests</Link>
             </li>
             <li className="inline-block mx-1 xl:mx-3">
-              <Link to="/latest-news">Latest News</Link>
+              <Link to={COMMON_QUESTIONS}>Common Questions</Link>
             </li>
             <li className="inline-block mx-1 xl:mx-3">
-              <Link to="/contact">Contact</Link>
+              <Link to={CONTACT}>Contact</Link>
             </li>
           </ul>
         </nav>

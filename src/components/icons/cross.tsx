@@ -1,5 +1,10 @@
-const Cross = () => (
+type Props = {
+  className?: string;
+};
+
+const Cross = ({ className }: Props) => (
   <svg
+    className={className}
     width="17"
     height="17"
     viewBox="0 0 17 17"
