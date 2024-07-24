@@ -2,14 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, SyntheticEvent, useState } from "react";
 import { Menu, Cross, Phone, Email, Location } from "./icons";
 import { Link } from "react-router-dom";
-import {
-  ABOUT,
-  COMMON_QUESTIONS,
-  CONTACT,
-  COURSES,
-  HOME,
-  TESTS_CATEGORIES,
-} from "../routes";
+import { COMMON_QUESTIONS, CONTACT, HOME, TESTS_CATEGORIES } from "../routes";
 
 const NavbarMobile = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -68,18 +61,6 @@ const NavbarMobile = () => {
                     to={HOME}
                   >
                     Home
-                  </Link>
-                  <Link
-                    className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to={ABOUT}
-                  >
-                    About
-                  </Link>
-                  <Link
-                    className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to={COURSES}
-                  >
-                    Courses
                   </Link>
                   <Link
                     className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"

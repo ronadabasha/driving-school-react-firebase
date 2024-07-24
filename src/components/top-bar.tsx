@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Facebook, Instagram, Location, Email } from "./icons";
 import Logo from "./logo";
 import { Link } from "react-router-dom";
 
 function TopBar() {
+  const [fixedTopbarOnScroll, setFixedTopbarOnScroll] = useState(false);
+
+  // useEffect(() => {
+  //   window.addEventListener("scroll", () => {
+  //     if (window.scrollY > 50) {
+  //       setFixedTopbarOnScroll(true);
+  //     }
+  //   });
+
+  //   //return () => window.removeEventListener("scroll", onScroll);
+  // }, []);
   return (
-    <div className="flex justify-between bg-ds-red mx-auto font-manrope font-normal">
+    <div
+      className={`flex justify-between bg-ds-red mx-auto font-manrope font-normal`}
+    >
       <div className="flex justify-between bg-ds-black lg:bg-white pl-4 xl:pl-20">
         <Logo customStyle="h-[50px] w-auto py-[8px] flex lg:hidden" />
 

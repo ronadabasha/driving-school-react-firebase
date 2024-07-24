@@ -8,18 +8,20 @@ function TestsList() {
   const tests = useTests(Number(categoryId));
 
   return (
-    <div className="flex flex-wrap max-w-screen-xl mx-auto py-20">
-      {tests?.map((test, index) => {
-        return (
-          <Link
-            key={test.id}
-            to={QUESTIONS + "/" + categoryId + "/" + test.id}
-            className="text-lg font-urbanist font-semibold text-center border border-ds-black hover:bg-ds-black hover:text-white color-white w-[150px] py-2 mr-10 mb-5"
-          >
-            Test {index + 1}
-          </Link>
-        );
-      })}
+    <div className="bg-ds-grey-light lg:min-h-screen">
+      <div className="flex flex-wrap max-w-screen-xl mx-auto py-20">
+        {tests?.map((test, index) => {
+          return (
+            <Link
+              key={test.id}
+              to={QUESTIONS + "/" + categoryId + "/" + test.id}
+              className="text-lg font-urbanist font-semibold text-center border border-ds-black hover:bg-ds-black hover:text-white color-white w-[150px] py-2 mr-10 mb-5"
+            >
+              Test {index + 1}
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }
