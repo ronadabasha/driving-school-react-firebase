@@ -4,11 +4,11 @@ import MainLayout from "./layouts/main-layout";
 import Home from "./pages/home";
 import TestsList from "./pages/tests-list";
 import CommonQuestions from "./pages/common-questions";
-import Contact from "./pages/contact";
+//import Contact from "./pages/contact";
 import Questions from "./pages/questions";
 import {
   COMMON_QUESTIONS,
-  CONTACT,
+  //CONTACT,
   HOME,
   QUESTIONS,
   TESTS_LIST,
@@ -22,7 +22,7 @@ function App() {
         <Route path={TESTS_LIST} element={<TestsList />} />
         <Route path={QUESTIONS + "/:testId"} element={<Questions />} />
         <Route path={COMMON_QUESTIONS} element={<CommonQuestions />} />
-        <Route path={CONTACT} element={<Contact />} />
+        {/* <Route path={CONTACT} element={<Contact />} /> */}
       </Routes>
     </MainLayout>
   );

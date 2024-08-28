@@ -6,7 +6,7 @@ function Contact() {
   return (
     <>
       <Banner breadcrumbs={contactBreadcrumbs} />
-      <div></div>
+      <div>todo</div>
     </>
   );
 }

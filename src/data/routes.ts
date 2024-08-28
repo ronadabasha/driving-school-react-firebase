@@ -18,8 +18,8 @@ export const routes: Routes[] = [
       label: "Common Questions",
       path: COMMON_QUESTIONS,
     },
-    {
-      label: "Contact",
-      path: CONTACT,
-    },
+    // {
+    //   label: "Contact",
+    //   path: CONTACT,
+    // },
 ]
