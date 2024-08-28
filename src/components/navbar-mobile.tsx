@@ -1,5 +1,5 @@
 import { Fragment, SyntheticEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   Dialog,
   DialogPanel,
@@ -64,13 +64,14 @@ const NavbarMobile = () => {
                 <div className="flex flex-col items-start text-white">
                   {routes.map((item: Routes) => {
                     return (
-                      <Link
+                      <NavLink
+                        key={item.path}
                         className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
                         to={item.path}
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {item.label}
-                      </Link>
+                      </NavLink>
                     );
                   })}
                 </div>
