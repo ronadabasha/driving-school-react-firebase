@@ -173,7 +173,10 @@ function Questions() {
                   <div>
                     {question.answers.map((answer) => {
                       return (
-                        <p className="w-full bg-white py-3 px-5 rounded-lg mr-3">
+                        <p
+                          key={answer}
+                          className="w-full bg-white py-3 px-5 rounded-lg mr-3"
+                        >
                           <input
                             type="radio"
                             value={answer}
