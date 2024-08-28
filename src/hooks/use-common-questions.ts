@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Question } from "../models";
+import { CommonQuestion } from "../models";
 import { getCommonQuestions,  } from "../services/questions";
 
 function useCommonQuestions() {
-    const [commonQuestions, setCommonQuestions] = useState<Question[]>();
+    const [commonQuestions, setCommonQuestions] = useState<CommonQuestion[]>();
 
     useEffect(() => {
         (async () => {

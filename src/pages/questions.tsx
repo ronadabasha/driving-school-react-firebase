@@ -27,7 +27,7 @@ function Questions() {
     question: Question,
     e: React.ChangeEvent<HTMLInputElement>
   ): void {
-    const answer = e.target.value === "true" ? true : false;
+    const answer = e.target.value;
     const newAnswers: TestResult[] = testResult;
     let answerIndex = testResult.findIndex(
       (item) => item.questionId === question.id
@@ -38,7 +38,7 @@ function Questions() {
       newAnswers.push({
         questionId: question.id,
         answer: answer,
-        correct: question.answer === answer,
+        correct: question.correctAnswer === answer,
       });
     }
     setTestResult(newAnswers);
@@ -124,10 +124,10 @@ function Questions() {
         <p className="text-base lg:text-xl">
           Wrong Answers: {questions?.length - correctAnswers}
         </p>
-        <p className="text-sm lg:text-lg mt-8 text-gray-600 font-urbanist italic">
-          ** Test time: 4 min **
-          {/* todo add countdown time */}
-        </p>
+        {/* <p className="text-sm lg:text-lg mt-8 text-gray-600 font-urbanist italic">
+         ** Test time: 4 min ** */}
+        {/* todo add countdown time */}
+        {/* </p> */}
       </div>
     ) : null;
   }
@@ -135,7 +135,7 @@ function Questions() {
   return questions?.length ? (
     <div className="bg-ds-grey-light lg:min-h-screen">
       <div className="max-w-screen-xl mx-auto pt-[70px] sm:py-20 px-4 sm:pl-6 sm:pr-0">
-        <div className="mb-6 pb-2 mr-0 sm:mr-6 border-b border-ds-black">
+        <div className="mb-6 pb-2 sm:mx-5 border-b border-ds-black">
           {questions?.map((question, index) => {
             return (
               <button
@@ -157,57 +157,47 @@ function Questions() {
           return (
             currentQuestion.index === index && (
               <div key={question.id} className="flex flex-col sm:flex-row">
-                <div className="p-5 bg-white rounded-lg">
-                  <img
-                    className="w-full sm:w-auto"
-                    src={"../../images/questions/" + question.id + ".png"}
-                    alt={question.id + ".png"}
-                  />
-                </div>
+                {question.image && (
+                  <div className="p-5 bg-white rounded-lg">
+                    <img
+                      className="w-full sm:w-auto"
+                      src={question.image}
+                      alt={question.image}
+                    />
+                  </div>
+                )}
                 <div className="w-full sm:px-5 py-6">
                   <h1 className="mb-8 font-urbanist font-semibold text-lg md:text-2xl text-ds-black">
                     {index + 1 + "." + question.description}
                   </h1>
-                  <div className="flex">
-                    <span className="block w-full bg-white py-3 px-5 rounded-lg mr-3">
-                      <input
-                        type="radio"
-                        value="true"
-                        defaultChecked={
-                          testResult.find(
-                            (item) => item.questionId === currentQuestion.id
-                          )?.answer === true
-                            ? true
-                            : false
-                        }
-                        name="answer"
-                        onChange={(e) => handleAnswer(question, e)}
-                      />{" "}
-                      True
-                    </span>
-                    <span className="block w-full bg-white py-3 px-5 rounded-lg ml-3">
-                      <input
-                        type="radio"
-                        value="false"
-                        defaultChecked={
-                          testResult.find(
-                            (item) => item.questionId === currentQuestion.id
-                          )?.answer === false
-                            ? true
-                            : false
-                        }
-                        name="answer"
-                        onChange={(e) => handleAnswer(question, e)}
-                      />{" "}
-                      False
-                    </span>
+                  <div>
+                    {question.answers.map((answer) => {
+                      return (
+                        <p className="w-full bg-white py-3 px-5 rounded-lg mr-3">
+                          <input
+                            type="radio"
+                            value={answer}
+                            defaultChecked={
+                              testResult.find(
+                                (item) => item.questionId === currentQuestion.id
+                              )?.answer === answer
+                                ? true
+                                : false
+                            }
+                            name="answer"
+                            onChange={(e) => handleAnswer(question, e)}
+                          />{" "}
+                          {answer}
+                        </p>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
             )
           );
         })}
-        <div className="flex flex-col sm:flex-row justify-between border-t border-ds-black sm:mt-6 sm:mr-6 sm:ml-0 pt-6">
+        <div className="flex flex-col sm:flex-row justify-between border-t border-ds-black sm:mt-6 sm:mx-5 pt-6">
           <Link
             to={TESTS_LIST}
             className="order-last sm:order-first text-lg font-urbanist font-semibold text-center border border-ds-black hover:bg-ds-black hover:text-white color-white w-full sm:w-[150px] py-2 mb-5"

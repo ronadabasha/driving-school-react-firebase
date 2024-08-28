@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "./logo";
 import { otherInfo } from "../data/contact";
 import { Routes, routes } from "../data/routes";
@@ -19,7 +19,13 @@ function NavbarDesktop() {
             {routes.map((item: Routes) => {
               return (
                 <li key={item.label} className="inline-block mx-3">
-                  <Link to={item.path}>{item.label}</Link>
+                  <NavLink to={item.path}>
+                    {({ isActive }) => (
+                      <span className={isActive ? "underline" : ""}>
+                        {item.label}
+                      </span>
+                    )}
+                  </NavLink>
                 </li>
               );
             })}
