@@ -1,5 +1,4 @@
 export const HOME = '/'
-export const TESTS_CATEGORIES = '/tests-categories'
 export const TESTS_LIST = '/tests-list'
 export const QUESTIONS = '/questions'
 export const COMMON_QUESTIONS = '/common-questions'

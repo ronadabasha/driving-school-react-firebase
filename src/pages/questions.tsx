@@ -6,7 +6,7 @@ import { TestResult, Question } from "../models";
 import Modal from "../components/modal";
 
 function Questions() {
-  const { testId, categoryId } = useParams();
+  const { testId } = useParams();
   const questions = useQuestions(Number(testId));
   const [currentQuestion, setCurrentQuestion] = useState<{
     id: number | null;
@@ -110,7 +110,7 @@ function Questions() {
     return questions ? (
       <div className="pt-12">
         <p
-          className={`text-2xl font-urbanist font-medium text-white w-full absolute top-0 left-0 p-5 ${
+          className={`text-xl lg:text-2xl font-urbanist font-medium text-white w-full absolute top-0 left-0 p-5 ${
             wrongAnswers > 4 ? "bg-ds-red" : "bg-green-500"
           }`}
         >
@@ -118,11 +118,13 @@ function Questions() {
             ? "You didn't pass the test!"
             : "Congratulations, you won!"}
         </p>
-        <p className="text-xl">Correct Answers: {correctAnswers}</p>
-        <p className="text-xl">
+        <p className="text-base lg:text-xl">
+          Correct Answers: {correctAnswers}
+        </p>
+        <p className="text-base lg:text-xl">
           Wrong Answers: {questions?.length - correctAnswers}
         </p>
-        <p className="text-lg mt-8 text-gray-600 font-urbanist italic">
+        <p className="text-sm lg:text-lg mt-8 text-gray-600 font-urbanist italic">
           ** Test time: 4 min **
           {/* todo add countdown time */}
         </p>
@@ -132,7 +134,7 @@ function Questions() {
 
   return questions?.length ? (
     <div className="bg-ds-grey-light lg:min-h-screen">
-      <div className="max-w-screen-xl mx-auto pt-[70px] sm:py-20 px-6 sm:pl-6 sm:pr-0">
+      <div className="max-w-screen-xl mx-auto pt-[70px] sm:py-20 px-4 sm:pl-6 sm:pr-0">
         <div className="mb-6 pb-2 mr-0 sm:mr-6 border-b border-ds-black">
           {questions?.map((question, index) => {
             return (
@@ -207,7 +209,7 @@ function Questions() {
         })}
         <div className="flex flex-col sm:flex-row justify-between border-t border-ds-black sm:mt-6 sm:mr-6 sm:ml-0 pt-6">
           <Link
-            to={TESTS_LIST + "/" + categoryId}
+            to={TESTS_LIST}
             className="order-last sm:order-first text-lg font-urbanist font-semibold text-center border border-ds-black hover:bg-ds-black hover:text-white color-white w-full sm:w-[150px] py-2 mb-5"
           >
             Tests List

@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
+
 type Props = {
   customStyle?: string;
 };
 
 function Logo({ customStyle }: Props) {
   return (
-    <a href="/">
+    <Link to="/">
       <img src="logo.png" alt="logo" className={customStyle} />
-    </a>
+    </Link>
   );
 }
 

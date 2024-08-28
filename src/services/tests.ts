@@ -1,5 +1,5 @@
 
-import { query, collection, getDocs, where, doc, getDoc } from 'firebase/firestore';
+import { query, collection, getDocs, doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebaseConfig';
 import { Test } from '../models';
 
@@ -14,12 +14,11 @@ async function getTestById(testId: number) {
   return null
 }
 
-async function getTests(categoryId: number, callback: ([{id, categoryId, questions}]: Test[]) => void) {
-    const q = query(collection(db, "tests"), where("categoryId", "==", categoryId));
+async function getTests(callback: ([{id, questions}]: Test[]) => void) {
+    const q = query(collection(db, "tests"));
     const querySnapshot = await getDocs(q);
     const tests = querySnapshot.docs.map((test) => ({
         id: test.data().id,
-        categoryId: test.data().categoryId,
         questions: test.data().questions
     }));
     callback(tests);

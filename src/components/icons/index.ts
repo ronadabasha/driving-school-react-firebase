@@ -14,7 +14,7 @@ import ChevronLeftDouble from "./chevron-left-double";
 import ChevronRightDouble from "./chevron-right-double";
 import Minus from "./minus";
 import Plus from "./plus";
+import Id from "./id";
+import Photo from "./photo";
 
-
-
-export {Facebook, Instagram, Menu, Cross, Phone, Email, Location, Clock, Work, Car, Avatar, Document, ChevronLeftDouble, ChevronRightDouble, Minus, Plus}
+export {Facebook, Instagram, Menu, Cross, Phone, Email, Location, Clock, Work, Car, Avatar, Document, ChevronLeftDouble, ChevronRightDouble, Minus, Plus, Id, Photo}

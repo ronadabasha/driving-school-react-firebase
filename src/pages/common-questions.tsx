@@ -7,17 +7,7 @@ import {
 import { Minus, Plus } from "../components/icons";
 import Banner from "../components/banner";
 import { useCommonQuestions } from "../hooks/use-common-questions";
-
-const breadcrumbs = [
-  {
-    to: "/",
-    label: "Home",
-  },
-  {
-    to: "/common-questions",
-    label: "Common Questions",
-  },
-];
+import { questionsBreadcrumbs } from "../data/breacrumbs";
 
 function CommonQuestions() {
   const commonQuestions = useCommonQuestions();
@@ -37,7 +27,7 @@ function CommonQuestions() {
 
   return (
     <>
-      <Banner breadcrumbs={breadcrumbs} />
+      <Banner breadcrumbs={questionsBreadcrumbs} />
       <div className="max-w-screen-xl py-12 md:py-20 mx-auto">
         {commonQuestions?.map((item, index) => (
           <div className="mx-[19px] font-mori desktop:mx-[131px]" key={item.id}>
@@ -67,7 +57,7 @@ function CommonQuestions() {
                     </div>
                   </DisclosureButton>
                   <DisclosurePanel className="decoration-primary pb-[26px] desktop:max-w-[927px]">
-                    <div className="max-w-[calc(100%-56px)] text-sm md:text-base">
+                    <div className="max-w-[calc(100%-55px)] text-sm md:text-base">
                       {item.answer}
                     </div>
                   </DisclosurePanel>
