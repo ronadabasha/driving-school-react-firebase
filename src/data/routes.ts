@@ -1,4 +1,4 @@
-import { COMMON_QUESTIONS, CONTACT, HOME, TESTS_LIST } from "../routes";
+import { COMMON_QUESTIONS, HOME, TESTS_LIST } from "../routes";
 
 export type Routes = {
   label: string,

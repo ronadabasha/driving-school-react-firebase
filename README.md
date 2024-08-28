@@ -23,7 +23,7 @@ npm start
 To deploy simply run
 
 ```
-npm build
+npm run build
 ```
 
 ## Built With
