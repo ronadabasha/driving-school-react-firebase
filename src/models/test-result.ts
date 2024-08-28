@@ -1,5 +1,5 @@
 export type TestResult = {
     questionId: number,
-    answer: boolean,
+    answer: string,
     correct: boolean
 }

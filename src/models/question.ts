@@ -1,5 +1,13 @@
 export type Question = {
     id: number,
     description: string,
-    answer: boolean
+    correctAnswer: string,
+    answers: Array<string>,
+    image?: string
+}
+
+export type CommonQuestion = {
+    id: number,
+    description: string,
+    answer: Array<string>
 }

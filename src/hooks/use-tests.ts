@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { getTests } from "../services/tests";
 import { Test } from "../models";
 
-function useTests(categoryId: number) {
+function useTests() {
     const [tests, setTests] = useState<Test[]>();
 
     useEffect(() => {
         (async () => {
-            getTests(categoryId, setTests)
-            const unsubscribe = getTests(categoryId, setTests);
+            getTests(setTests)
+            const unsubscribe = getTests(setTests);
             return unsubscribe;
         })()
-    }, [categoryId]);
+    }, []);
 
     return tests;
 }

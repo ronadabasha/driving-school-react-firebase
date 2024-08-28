@@ -10,13 +10,13 @@ type Props = {
 
 function MainLayout({ children }: Props) {
   return (
-    <div className="bg-ds-grey-light">
+    <>
       <TopBar />
       <NavbarDesktop />
       <NavbarMobile />
       <div className="lg:min-h-screen">{children}</div>
       <Footer />
-    </div>
+    </>
   );
 }
 

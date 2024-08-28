@@ -6,7 +6,7 @@ import { TestResult, Question } from "../models";
 import Modal from "../components/modal";
 
 function Questions() {
-  const { testId, categoryId } = useParams();
+  const { testId } = useParams();
   const questions = useQuestions(Number(testId));
   const [currentQuestion, setCurrentQuestion] = useState<{
     id: number | null;
@@ -27,7 +27,7 @@ function Questions() {
     question: Question,
     e: React.ChangeEvent<HTMLInputElement>
   ): void {
-    const answer = e.target.value === "true" ? true : false;
+    const answer = e.target.value;
     const newAnswers: TestResult[] = testResult;
     let answerIndex = testResult.findIndex(
       (item) => item.questionId === question.id
@@ -38,7 +38,7 @@ function Questions() {
       newAnswers.push({
         questionId: question.id,
         answer: answer,
-        correct: question.answer === answer,
+        correct: question.correctAnswer === answer,
       });
     }
     setTestResult(newAnswers);
@@ -110,7 +110,7 @@ function Questions() {
     return questions ? (
       <div className="pt-12">
         <p
-          className={`text-2xl font-urbanist font-medium text-white w-full absolute top-0 left-0 p-5 ${
+          className={`text-xl lg:text-2xl font-urbanist font-medium text-white w-full absolute top-0 left-0 p-5 ${
             wrongAnswers > 4 ? "bg-ds-red" : "bg-green-500"
           }`}
         >
@@ -118,132 +118,126 @@ function Questions() {
             ? "You didn't pass the test!"
             : "Congratulations, you won!"}
         </p>
-        <p className="text-xl">Correct Answers: {correctAnswers}</p>
-        <p className="text-xl">
+        <p className="text-base lg:text-xl">
+          Correct Answers: {correctAnswers}
+        </p>
+        <p className="text-base lg:text-xl">
           Wrong Answers: {questions?.length - correctAnswers}
         </p>
-        <p className="text-lg mt-8 text-gray-600 font-urbanist italic">
-          ** Test time: 4 min **
-          {/* todo add countdown time */}
-        </p>
+        {/* <p className="text-sm lg:text-lg mt-8 text-gray-600 font-urbanist italic">
+         ** Test time: 4 min ** */}
+        {/* todo add countdown time */}
+        {/* </p> */}
       </div>
     ) : null;
   }
 
   return questions?.length ? (
-    <div className="max-w-screen-xl mx-auto pt-[70px] sm:py-20 px-6 sm:pl-6 sm:pr-0">
-      <div className="mb-6 pb-2 mr-0 sm:mr-6 border-b border-ds-black">
+    <div className="bg-ds-grey-light lg:min-h-screen">
+      <div className="max-w-screen-xl mx-auto pt-[70px] sm:py-20 px-4 sm:pl-6 sm:pr-0">
+        <div className="mb-6 pb-2 sm:mx-5 border-b border-ds-black">
+          {questions?.map((question, index) => {
+            return (
+              <button
+                key={question.id}
+                onClick={() =>
+                  setCurrentQuestion({ id: question.id, index: index })
+                }
+                className={`text-xl rounded-lg mb-4 mr-5 w-10 h-10 border border-ds-black ${handleQuestionsColors(
+                  question,
+                  index
+                )}`}
+              >
+                {index + 1}
+              </button>
+            );
+          })}
+        </div>
         {questions?.map((question, index) => {
           return (
-            <button
-              key={question.id}
-              onClick={() =>
-                setCurrentQuestion({ id: question.id, index: index })
-              }
-              className={`text-xl rounded-lg mb-4 mr-5 w-10 h-10 border border-ds-black ${handleQuestionsColors(
-                question,
-                index
-              )}`}
-            >
-              {index + 1}
-            </button>
-          );
-        })}
-      </div>
-      {questions?.map((question, index) => {
-        return (
-          currentQuestion.index === index && (
-            <div key={question.id} className="flex flex-col sm:flex-row">
-              <div className="p-5 bg-white rounded-lg">
-                <img
-                  className="w-full sm:w-auto"
-                  src={"../../images/questions/" + question.id + ".png"}
-                  alt={question.id + ".png"}
-                />
-              </div>
-              <div className="w-full sm:px-5 py-6">
-                <h1 className="mb-8 font-urbanist font-semibold text-lg md:text-2xl text-ds-black">
-                  {index + 1 + "." + question.description}
-                </h1>
-                <div className="flex">
-                  <span className="block w-full bg-white py-3 px-5 rounded-lg mr-3">
-                    <input
-                      type="radio"
-                      value="true"
-                      defaultChecked={
-                        testResult.find(
-                          (item) => item.questionId === currentQuestion.id
-                        )?.answer === true
-                          ? true
-                          : false
-                      }
-                      name="answer"
-                      onChange={(e) => handleAnswer(question, e)}
-                    />{" "}
-                    True
-                  </span>
-                  <span className="block w-full bg-white py-3 px-5 rounded-lg ml-3">
-                    <input
-                      type="radio"
-                      value="false"
-                      defaultChecked={
-                        testResult.find(
-                          (item) => item.questionId === currentQuestion.id
-                        )?.answer === false
-                          ? true
-                          : false
-                      }
-                      name="answer"
-                      onChange={(e) => handleAnswer(question, e)}
-                    />{" "}
-                    False
-                  </span>
+            currentQuestion.index === index && (
+              <div key={question.id} className="flex flex-col sm:flex-row">
+                {question.image && (
+                  <div className="p-5 bg-white rounded-lg">
+                    <img
+                      className="w-full sm:w-auto"
+                      src={question.image}
+                      alt={question.image}
+                    />
+                  </div>
+                )}
+                <div className="w-full sm:px-5 py-6">
+                  <h1 className="mb-8 font-urbanist font-semibold text-lg md:text-2xl text-ds-black">
+                    {index + 1 + "." + question.description}
+                  </h1>
+                  <div>
+                    {question.answers.map((answer) => {
+                      return (
+                        <p className="w-full bg-white py-3 px-5 rounded-lg mr-3">
+                          <input
+                            type="radio"
+                            value={answer}
+                            defaultChecked={
+                              testResult.find(
+                                (item) => item.questionId === currentQuestion.id
+                              )?.answer === answer
+                                ? true
+                                : false
+                            }
+                            name="answer"
+                            onChange={(e) => handleAnswer(question, e)}
+                          />{" "}
+                          {answer}
+                        </p>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
-          )
-        );
-      })}
-      <div className="flex flex-col sm:flex-row justify-between border-t border-ds-black sm:mt-6 sm:mr-6 sm:ml-0 pt-6">
-        <Link
-          to={TESTS_LIST + "/" + categoryId}
-          className="order-last sm:order-first text-lg font-urbanist font-semibold text-center border border-ds-black hover:bg-ds-black hover:text-white color-white w-full sm:w-[150px] py-2 mb-5"
-        >
-          Tests List
-        </Link>
-        <div>
-          <button
-            className={`text-lg font-urbanist font-semibold text-center border border-ds-black color-white w-full sm:w-[150px] py-2 sm:ml-6 mb-5 ${
-              currentQuestion.index === 0
-                ? "opacity-30"
-                : "opacity-1 hover:bg-ds-black hover:text-white"
-            }`}
-            disabled={currentQuestion.index === 0 ? true : false}
-            onClick={handlePrev}
+            )
+          );
+        })}
+        <div className="flex flex-col sm:flex-row justify-between border-t border-ds-black sm:mt-6 sm:mx-5 pt-6">
+          <Link
+            to={TESTS_LIST}
+            className="order-last sm:order-first text-lg font-urbanist font-semibold text-center border border-ds-black hover:bg-ds-black hover:text-white color-white w-full sm:w-[150px] py-2 mb-5"
           >
-            Previous
-          </button>
-          <button
-            className={`text-lg font-urbanist font-semibold text-center border border-ds-black color-white w-full sm:w-[150px] py-2 sm:ml-6 mb-5 ${
-              currentQuestion.index === questions.length - 1
-                ? "opacity-30"
-                : "opacity-1 hover:bg-ds-black hover:text-white"
-            }`}
-            disabled={
-              currentQuestion.index === questions.length - 1 ? true : false
-            }
-            onClick={handleNext}
-          >
-            Next
-          </button>
+            Tests List
+          </Link>
+          <div>
+            <button
+              className={`text-lg font-urbanist font-semibold text-center border border-ds-black color-white w-full sm:w-[150px] py-2 sm:ml-6 mb-5 ${
+                currentQuestion.index === 0
+                  ? "opacity-30"
+                  : "opacity-1 hover:bg-ds-black hover:text-white"
+              }`}
+              disabled={currentQuestion.index === 0 ? true : false}
+              onClick={handlePrev}
+            >
+              Previous
+            </button>
+            <button
+              className={`text-lg font-urbanist font-semibold text-center border border-ds-black color-white w-full sm:w-[150px] py-2 sm:ml-6 mb-5 ${
+                currentQuestion.index === questions.length - 1
+                  ? "opacity-30"
+                  : "opacity-1 hover:bg-ds-black hover:text-white"
+              }`}
+              disabled={
+                currentQuestion.index === questions.length - 1 ? true : false
+              }
+              onClick={handleNext}
+            >
+              Next
+            </button>
+          </div>
         </div>
+        <Modal
+          testCompleted={testCompleted}
+          onClick={handleTestComplete}
+          button="Complete the Test"
+          panel={<TestResultPanel />}
+        />
       </div>
-      <Modal
-        testCompleted={testCompleted}
-        onClick={handleTestComplete}
-        button="Complete the Test"
-        panel={<TestResultPanel />}
-      />
     </div>
   ) : null;
 }

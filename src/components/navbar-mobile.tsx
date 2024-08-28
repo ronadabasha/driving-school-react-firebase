@@ -1,15 +1,14 @@
-import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, SyntheticEvent, useState } from "react";
-import { Menu, Cross, Phone, Email, Location } from "./icons";
 import { Link } from "react-router-dom";
 import {
-  ABOUT,
-  COMMON_QUESTIONS,
-  CONTACT,
-  COURSES,
-  HOME,
-  TESTS_CATEGORIES,
-} from "../routes";
+  Dialog,
+  DialogPanel,
+  Transition,
+  TransitionChild,
+} from "@headlessui/react";
+import { Menu, Cross } from "./icons";
+import { otherInfo } from "../data/contact";
+import { Routes, routes } from "../data/routes";
 
 const NavbarMobile = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -34,7 +33,7 @@ const NavbarMobile = () => {
           open={mobileMenuOpen}
           onClose={setMobileMenuOpen}
         >
-          <Transition.Child
+          <TransitionChild
             as={Fragment}
             enter="transition ease-out duration-300"
             enterFrom="-translate-y-full"
@@ -43,7 +42,7 @@ const NavbarMobile = () => {
             leaveFrom="translate-y-0"
             leaveTo="-translate-y-full"
           >
-            <Dialog.Panel className="fixed max-w-full inset-0 right-0 z-20 w-full bg-ds-black text-white">
+            <DialogPanel className="fixed max-w-full inset-0 right-0 z-20 w-full bg-ds-black text-white">
               <div className="flex items-center justify-start p-[19px] h-[75px] w-full">
                 <button
                   type="button"
@@ -63,75 +62,53 @@ const NavbarMobile = () => {
                 }}
               >
                 <div className="flex flex-col items-start text-white">
-                  <Link
-                    className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to={HOME}
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to={ABOUT}
-                  >
-                    About
-                  </Link>
-                  <Link
-                    className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to={COURSES}
-                  >
-                    Courses
-                  </Link>
-                  <Link
-                    className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to={TESTS_CATEGORIES}
-                  >
-                    Tests
-                  </Link>
-                  <Link
-                    className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to={COMMON_QUESTIONS}
-                  >
-                    Common Questions
-                  </Link>
-                  <Link
-                    className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
-                    to={CONTACT}
-                  >
-                    Contact
-                  </Link>
+                  {routes.map((item: Routes) => {
+                    return (
+                      <Link
+                        className="block uppercase text-[16px] leading-[19px] font-urbanist font-normal px-3 mb-4"
+                        to={item.path}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    );
+                  })}
                 </div>
                 <div className="flex flex-col text-white border-t lg:border-l-2 mt-7 border-[#f0f0f0b3] pl-4 py-4">
                   <a
-                    href="tel:00355122343456"
+                    href={`tel:00${otherInfo.phone.label}`}
                     className="flex text-white mr-0 mb-3"
                   >
                     <span className="inline-block pt-[2px]">
-                      <Phone />
-                    </span>{" "}
-                    <span className="ml-3"> +355122343456</span>
+                      {otherInfo.phone.icon}
+                    </span>
+                    <span className="ml-3"> +{otherInfo.phone.label}</span>
                   </a>
 
-                  <a href="mailto:test@company.com" className="flex mb-3">
+                  <a
+                    href={`mailto:${otherInfo.phone.label}`}
+                    className="flex mb-3"
+                  >
                     <span className="inline-block pt-[2px]">
-                      <Email />
-                    </span>{" "}
-                    <span className="ml-3">test@company.com</span>
+                      {otherInfo.email.icon}
+                    </span>
+                    <span className="ml-3">{otherInfo.phone.label}</span>
                   </a>
                   <a
                     target="_blank"
-                    href="http://maps.apple.com/maps?q=41.326861076222436, 19.822800721202288"
+                    href={otherInfo.location.link}
                     className="flex mr-12 mb-3"
                     rel="noreferrer"
                   >
                     <span className="inline-block pt-[3px]">
-                      <Location />
-                    </span>{" "}
-                    <span className="ml-3">Tirana, Albania</span>
+                      {otherInfo.location.icon}
+                    </span>
+                    <span className="ml-3">{otherInfo.location.label}</span>
                   </a>
                 </div>
               </div>
-            </Dialog.Panel>
-          </Transition.Child>
+            </DialogPanel>
+          </TransitionChild>
         </Dialog>
       </Transition>
     </>

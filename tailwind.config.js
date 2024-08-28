@@ -9,6 +9,9 @@ module.exports = {
         "ds-grey": "#6D7076",
         "ds-grey-light": "#F5F5F5",
       },
+      backgroundImage: {
+        pageBanner: "url('/public/banner-driving.jpg')",
+      },
       fontFamily: {
         urbanist: ["Urbanist", "sans-serif"],
         manrope: ["Manrope", "sans-serif"],
