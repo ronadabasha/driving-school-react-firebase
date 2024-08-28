@@ -15,7 +15,7 @@ function useQuestions(testId: number) {
                 return unsubscribe;
             }
         })()
-    }, []);
+    }, [testId]);
 
     return questions;
 }

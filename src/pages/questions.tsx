@@ -17,7 +17,7 @@ function Questions() {
 
   useEffect(() => {
     handleQuestionsColors(questions ? questions[0] : null, 0);
-  }, [testCompleted]);
+  }, [testCompleted, questions]);
 
   useEffect(() => {
     handleChecked();
