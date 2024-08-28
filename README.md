@@ -1,7 +1,7 @@
 # Driving School App / ReactJS & Firebase
 
-![Thumbnail](thumbnail-1.png)
-![Thumbnail](thumbnail-2.png)
+![ScreenShot](screenshot-1.png)
+![ScreenShot](screenshot-2.png)
 
 A Driving School App made with React 18.3.1
 
