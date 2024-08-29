@@ -1,5 +1,7 @@
 # Driving School App / ReactJS & Firebase
 
+## [Check it live here](https://drivingschoolapp.netlify.app/)
+
 ![ScreenShot](screenshot-1.png)
 ![ScreenShot](screenshot-2.png)
 
