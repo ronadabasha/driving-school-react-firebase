@@ -27,6 +27,7 @@ const Modal = ({ testCompleted, onClick, button, panel }: Props) => {
                 testCompleted ? "opacity-30" : "opacity-1 hover:opacity-75 "
               }`}
               onClick={onClick}
+              disabled={testCompleted}
             >
               {button}
             </PopoverButton>

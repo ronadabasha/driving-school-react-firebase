@@ -143,7 +143,7 @@ function Questions() {
                 onClick={() =>
                   setCurrentQuestion({ id: question.id, index: index })
                 }
-                className={`text-xl rounded-lg mb-4 mr-5 w-10 h-10 border border-ds-black ${handleQuestionsColors(
+                className={`text-xl rounded-lg mb-4 mr-5 w-10 h-10 border border-ds-black  ${handleQuestionsColors(
                   question,
                   index
                 )}`}
@@ -189,44 +189,66 @@ function Questions() {
                             }
                             name="answer"
                             onChange={(e) => handleAnswer(question, e)}
+                            className={`${
+                              testCompleted ? "opacity-80" : "opacity-1"
+                            }`}
+                            disabled={testCompleted}
                           />{" "}
                           {answer}
                         </p>
                       );
                     })}
                   </div>
+                  {testCompleted && (
+                    <p className="font-bold mt-5">
+                      Correct Answer:{" "}
+                      <span className="text-green-500 ">
+                        {question.correctAnswer}
+                      </span>
+                    </p>
+                  )}
                 </div>
               </div>
             )
           );
         })}
-        <div className="flex flex-col sm:flex-row justify-between border-t border-ds-black sm:mt-6 sm:mx-5 pt-6">
-          <Link
-            to={TESTS_LIST}
-            className="order-last sm:order-first text-lg font-urbanist font-semibold text-center border border-ds-black hover:bg-ds-black hover:text-white color-white w-full sm:w-[150px] py-2 mb-5"
-          >
-            Tests List
-          </Link>
-          <div>
+        <div className="flex flex-row justify-between border-t border-ds-black sm:mt-6 sm:mx-5 py-6">
+          <div className="flex flex-col md:flex-row justify-start">
+            <Link
+              to={TESTS_LIST}
+              className="mr-6 text-lg font-urbanist font-semibold text-center border border-ds-black hover:bg-ds-black hover:text-white color-white w-[150px] py-2 my-2"
+            >
+              Tests List
+            </Link>
             <button
-              className={`text-lg font-urbanist font-semibold text-center border border-ds-black color-white w-full sm:w-[150px] py-2 sm:ml-6 mb-5 ${
-                currentQuestion.index === 0
+              className={`text-lg font-urbanist font-semibold text-center border border-ds-black color-white w-[150px] py-2 my-2`}
+              onClick={() => {
+                window.location.reload();
+              }}
+            >
+              Try Again
+            </button>
+          </div>
+          <div className="flex flex-col md:flex-row justify-end">
+            <button
+              className={`text-lg font-urbanist font-semibold text-center border border-ds-black color-white w-[150px] py-2 sm:ml-6 my-2 ${
+                currentQuestion.index === 0 || testCompleted
                   ? "opacity-30"
                   : "opacity-1 hover:bg-ds-black hover:text-white"
               }`}
-              disabled={currentQuestion.index === 0 ? true : false}
+              disabled={currentQuestion.index === 0 || testCompleted}
               onClick={handlePrev}
             >
               Previous
             </button>
             <button
-              className={`text-lg font-urbanist font-semibold text-center border border-ds-black color-white w-full sm:w-[150px] py-2 sm:ml-6 mb-5 ${
-                currentQuestion.index === questions.length - 1
+              className={`text-lg font-urbanist font-semibold text-center border border-ds-black color-white w-[150px] py-2 sm:ml-6 my-2 ${
+                currentQuestion.index === questions.length - 1 || testCompleted
                   ? "opacity-30"
                   : "opacity-1 hover:bg-ds-black hover:text-white"
               }`}
               disabled={
-                currentQuestion.index === questions.length - 1 ? true : false
+                currentQuestion.index === questions.length - 1 || testCompleted
               }
               onClick={handleNext}
             >
