@@ -7,7 +7,7 @@ type Props = {
 function Logo({ customStyle }: Props) {
   return (
     <Link to="/">
-      <img src="logo.png" alt="logo" className={customStyle} />
+      <img src="/logo.png" alt="logo" className={customStyle} />
     </Link>
   );
 }
